@@ -1,0 +1,141 @@
+ООP - это Объектно Ориентированное програмирование. До этого изучалось Процедурное програмирование, где писали всю лоику в одном файле
+(удобно если писать маленький скрипт для одной задачи). Но если создать с помощью ПП большую систему, то в будущем эту большую систему
+будет очень сложно поддерживать, сложно расширять функционал и дорого будет обходится дальнейшаяя доработка продукта. При
+праельном использовании ООП можно будет сздавать большие и расширямые системы, которые легко поддерживать и добавлять новый функционал.
+
+В ООП всё является объектами.
+
+Очень популярный вопрос на собеседовании что такое ООП и какие три основные принципа есть в нём. Првельный ответ это -
+Инкапсуляция, Полиморфизм и Наследование
+
+Инкапсуляция - это понятие в ООП обозначающее защиту, сокрытие данных от внешнего пользователя. Инкапсуляция в ООП обозначает то что нужно дать пользавателю программы
+доступ только к нужным интерфейсам, методам и скрывать доступ к внутренним(приватным) методам и полям класса 
+
+В php ceществет три области видимости классов: public,  protectet и private.
+
+public - означает что доступ к свойствам и методам класса разрешён ото всюду.
+
+protectet - разрешает доступ наследовательным и родительским классам.
+
+private - 
+
+
+Наследование - позволяет наследовать функцианал, набор полей и методов от одного класса в другой
+
+
+Поллиморфизм это свойство ООП позволяющее одному и тому же методу вести себя по разному (для того чтоб программа была расшеряемой). 
+
+Интерфейс - это шаблонный класс без реализации, в интерфейсе задаются методы без реалищации, использование интерфейсов походе на наследование. 
+Применение наследования к классу называется Имплементацией.
+
+<?php 
+
+    interface Say {
+        public function say();
+        // public function say3();
+    }
+
+    // interface Say2 {
+    //     public function say2();
+    // }
+
+
+    class Human implements Say { // class Human implements Say, Say2
+        public function say() {
+            echo "123";
+        }
+        public function say2() {
+            echo "123";
+        }
+        
+    }
+
+    $human = new Human();
+
+?>
+
+
+
+Абстрактные классы - помимо интерфейсов сеществуют абстрактные классы. От них тоде можно только наследоваться.
+Можно создавать конструкторы, методы, методы без реалищации
+
+
+<?php 
+
+    interface Say {
+        public function say();
+    }
+
+    abstract class Human implements Say{
+        private $name; 
+    }
+
+    class Human2 extends Human { // extends - это ключевое слово наследования.
+
+    }
+
+    //$human = new Human(); // Так не работает
+    $human2 = new Human2(); // Так работает
+
+
+?>
+_____________________________________________________________________________
+
+<?php 
+
+    interface Say {
+        public function say();
+    }
+
+    abstract class Human implements Say {
+        private $name; 
+
+        public function __construct($name) {
+            $this->name = $name;
+        }
+
+        public function getName() {
+            return $this->name();
+        }
+
+    }
+
+    class Man extends Human {
+        public function __construct($name) {
+            parent::__construct($name);
+        }
+        public function beard() {
+            echo "I have a beard!";
+        }
+        public function say() {
+            echo "I have a male voice, my name is " . $this->getName() . " and ";
+        }
+
+    }
+
+    class Woman extends Human {
+        public function __construct($name) {
+            parent::__construct($name);
+        }
+
+        public function noBeard() {
+            echo "I do not have a beard!";
+        }
+
+        public function say() {
+            echo "I have a female voice, my name is " . $this->getName() . " and ";
+        }
+    }
+
+
+
+    $man = new Man("Sergey");
+    $man->say();
+    $man->beard();
+
+
+    $woman = new Woman("Woman");
+    $woman->say();
+    $woman->noBeard();
+
+?>

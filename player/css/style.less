@@ -1,0 +1,48 @@
+// compress: true, sourceMap: true
+@import "vars";
+
+/* MAIN STYLE */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+
+}
+
+.container {
+    padding: 0 20px;
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    color: red;
+    text-transform: uppercase
+}
+
+h3 {
+    margin: 0 0 2rem 0;
+    color: white;
+    text-transform: uppercase
+}
+
+a {
+    color: white;
+    text-decoration: none;
+
+}
+
+a:hover {
+    color: red;
+    transition: .2s linear;
+}
+
+
+
+/*Blocks*/
+@import "blocks/form";
+@import "blocks/table";
